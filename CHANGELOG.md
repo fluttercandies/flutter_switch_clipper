@@ -1,3 +1,7 @@
 ## 0.0.1
 
-* TODO: Describe initial release.
+* First commit
+
+## 0.0.2
+
+* Complete introduction and example

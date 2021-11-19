@@ -4,6 +4,9 @@ A Flutter package that two widgets switch with clipper.
 
 ## 1.使用
 
+<img src="https://raw.githubusercontent.com/fluttercandies/flutter_switch_clipper/master/preview/fv.gif" height=100>
+<img src="https://raw.githubusercontent.com/fluttercandies/flutter_switch_clipper/master/preview/fc.gif" height=100>
+
 ```dart
 SwitchCipper(
     initSelect: true,
@@ -44,9 +47,40 @@ SwitchCipper(
     fillOffset: 10,
 ),
 ```
+<img src="https://raw.githubusercontent.com/fluttercandies/flutter_switch_clipper/master/preview/cs.gif" height=100>
 
-<img src="https://raw.githubusercontent.com/fluttercandies/flutter_switch_clipper/master/preview/fv.gif" height=100>
-<img src="https://raw.githubusercontent.com/fluttercandies/flutter_switch_clipper/master/preview/fc.gif" height=100>
+```dart
+SwitchCipper(
+    child: const Icon(Icons.accessibility_new_rounded, size: 200, color: Colors.blueAccent),
+    background: const Icon(Icons.accessibility_new_rounded, size: 200, color: Colors.white),
+    curve: Curves.ease,
+    duration: const Duration(milliseconds: 800),
+    customCipperBuilder: (Animation<double> animation, _) => CircleClipper(animation: animation),
+),
+```
+```dart
+///自定义Clipper
+class CircleClipper extends CustomClipper<Path> {
+  CircleClipper({required this.animation}) : super(reclip: animation);
+
+  ///animation
+  final Animation<double> animation;
+
+  @override
+  Path getClip(Size size) {
+    return Path()
+      ..addOval(
+        Rect.fromCircle(
+          center: Offset(size.width / 2, size.height / 2),
+          radius: (size.longestSide / 2) * animation.value,
+        ),
+      );
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) => false;
+}
+```
 
 ## 体验一下
 

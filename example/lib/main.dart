@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_switch_clipper/flutter_switch_clipper.dart';
 
@@ -26,7 +24,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.blueGrey[200],
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
@@ -46,6 +44,7 @@ class _MyAppState extends State<MyApp> {
                 print(r);
               },
             ),
+
             SwitchCipper(
               child: const Text(
                 'FlutterCandies',
@@ -70,6 +69,20 @@ class _MyAppState extends State<MyApp> {
               reverseCurve: Curves.linear,
               fillOffset: 10,
             ),
+
+            ///自定义裁切example
+            SwitchCipper(
+              child: const Icon(Icons.accessibility_new_rounded,
+                  size: 200, color: Colors.blueAccent),
+              background: const Icon(Icons.accessibility_new_rounded,
+                  size: 200, color: Colors.white),
+              curve: Curves.ease,
+              duration: const Duration(milliseconds: 800),
+              customCipperBuilder: (Animation<double> animation, _) =>
+                  CircleClipper(animation: animation),
+            ),
+
+            ///填充方向
             const SizedBox(height: 40),
             ...FillAlignment.values
                 .map((FillAlignment alignment) => RadioListTile<FillAlignment>(
@@ -89,4 +102,26 @@ class _MyAppState extends State<MyApp> {
       ),
     );
   }
+}
+
+///自定义Clipper
+class CircleClipper extends CustomClipper<Path> {
+  CircleClipper({required this.animation}) : super(reclip: animation);
+
+  ///animation
+  final Animation<double> animation;
+
+  @override
+  Path getClip(Size size) {
+    return Path()
+      ..addOval(
+        Rect.fromCircle(
+          center: Offset(size.width / 2, size.height / 2),
+          radius: (size.longestSide / 2) * animation.value,
+        ),
+      );
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) => false;
 }
