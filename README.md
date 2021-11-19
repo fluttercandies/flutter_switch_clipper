@@ -45,8 +45,8 @@ SwitchCipper(
 ),
 ```
 
-<img src="preview/fv.gif" height=100>
-<img src="preview/fc.gif" height=100>
+<img src="https://raw.githubusercontent.com/fluttercandies/flutter_switch_clipper/master/preview/fv.gif" height=100>
+<img src="https://raw.githubusercontent.com/fluttercandies/flutter_switch_clipper/master/preview/fc.gif" height=100>
 
 ## 体验一下
 
