@@ -35,8 +35,10 @@ class _MyAppState extends State<MyApp> {
           children: <Widget>[
             SwitchCipper(
               initSelect: true,
-              child: const Icon(Icons.favorite, size: 200, color: Colors.redAccent),
-              background: const Icon(Icons.favorite, size: 200, color: Colors.white),
+              child: const Icon(Icons.favorite,
+                  size: 200, color: Colors.redAccent),
+              background:
+                  const Icon(Icons.favorite, size: 200, color: Colors.white),
               fillAlignment: _alignment,
               fillOffset: 50,
               duration: const Duration(milliseconds: 800),

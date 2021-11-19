@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 enum FillAlignment { left, top, right, bottom }
 
 ///自定义裁剪
-typedef SwitchCipperBuilder = CustomClipper<Path>? Function(Animation<double> animation, FillAlignment fillAlignment);
+typedef SwitchCipperBuilder = CustomClipper<Path>? Function(
+    Animation<double> animation, FillAlignment fillAlignment);
 
 ///SwitchCipper
 class SwitchCipper extends StatefulWidget {
@@ -77,7 +78,8 @@ class SwitchCipper extends StatefulWidget {
   final SwitchCipperBuilder? customCipperBuilder;
 }
 
-class _SwitchCipperState extends State<SwitchCipper> with SingleTickerProviderStateMixin {
+class _SwitchCipperState extends State<SwitchCipper>
+    with SingleTickerProviderStateMixin {
   ///动画控制器
   late AnimationController _controller;
 
@@ -203,7 +205,8 @@ class _MaskClipper extends CustomClipper<Path> {
         ..moveTo(0, -fillOffset)
         ..lineTo(w, -fillOffset)
         ..lineTo(w, h * animation.value - fillOffset * (1 - animation.value))
-        ..quadraticBezierTo(w / 2, h * animation.value, 0, h * animation.value - fillOffset * (1 - animation.value))
+        ..quadraticBezierTo(w / 2, h * animation.value, 0,
+            h * animation.value - fillOffset * (1 - animation.value))
         ..close();
     } else if (fillAlignment == FillAlignment.right) {
       path
@@ -223,7 +226,10 @@ class _MaskClipper extends CustomClipper<Path> {
         ..lineTo(w, h + fillOffset)
         ..lineTo(w, (h + fillOffset) * (1 - animation.value))
         ..quadraticBezierTo(
-            w / 2, (h - (fillOffset - 1)) * (1 - animation.value), 0, (h + fillOffset) * (1 - animation.value))
+            w / 2,
+            (h - (fillOffset - 1)) * (1 - animation.value),
+            0,
+            (h + fillOffset) * (1 - animation.value))
         ..close();
     } else {
       path
