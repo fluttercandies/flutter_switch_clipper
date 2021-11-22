@@ -5,3 +5,7 @@
 ## 0.0.2
 
 * Complete introduction and example
+
+## 0.0.3
+
+* Redesign the architecture, add optional parameters

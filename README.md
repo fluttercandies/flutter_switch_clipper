@@ -1,29 +1,34 @@
-# flutter_switch_clipper
+# Flutter Switch Clipper
 
 A Flutter package that two widgets switch with clipper.
 
-## 1.使用
+### 使用
+
+> 使用FillClipper并自定义相关参数 
 
 <img src="https://raw.githubusercontent.com/fluttercandies/flutter_switch_clipper/master/preview/fv.gif" height=100>
-<img src="https://raw.githubusercontent.com/fluttercandies/flutter_switch_clipper/master/preview/fc.gif" height=100>
 
 ```dart
 SwitchCipper(
     initSelect: true,
     child: const Icon(Icons.favorite, size: 200, color: Colors.redAccent),
     background: const Icon(Icons.favorite, size: 200, color: Colors.white),
-    fillAlignment: _alignment,
-    fillOffset: 50,
     duration: const Duration(milliseconds: 800),
-    onSelect: (bool r) {
-        print(r);
-    },
+    customCipperBuilder: (Animation<double> animation) => FillClipper(
+        animation: animation,
+        fillAlignment: _alignment,
+        fillOffset: 50,
+    ),
 ),
 ```
+> 使用默认FillClipper 
+
+<img src="https://raw.githubusercontent.com/fluttercandies/flutter_switch_clipper/master/preview/fc.gif" height=100>
 
 ```dart
-SwitchCipper(
-    child: const Text(
+const SwitchCipper(
+    enableWhenAnimating: false,
+    child: Text(
         'FlutterCandies',
         style: TextStyle(
             fontWeight: FontWeight.bold,
@@ -32,7 +37,7 @@ SwitchCipper(
             height: 2,
         ),
     ),
-    background: const Text(
+    background: Text(
         'FlutterCandies',
         style: TextStyle(
             fontWeight: FontWeight.bold,
@@ -41,12 +46,12 @@ SwitchCipper(
             height: 2,
         ),
     ),
-    fillAlignment: _alignment,
     curve: Curves.slowMiddle,
     reverseCurve: Curves.linear,
-    fillOffset: 10,
 ),
 ```
+> 使用CircleClipper切换图标颜色 
+
 <img src="https://raw.githubusercontent.com/fluttercandies/flutter_switch_clipper/master/preview/cs.gif" height=100>
 
 ```dart
@@ -55,34 +60,46 @@ SwitchCipper(
     background: const Icon(Icons.accessibility_new_rounded, size: 200, color: Colors.white),
     curve: Curves.ease,
     duration: const Duration(milliseconds: 800),
-    customCipperBuilder: (Animation<double> animation, _) => CircleClipper(animation: animation),
+    customCipperBuilder: (Animation<double> animation) => CircleClipper(animation: animation),
 ),
 ```
+
+> 使用CircleClipper切换两个图标 
+
+<img src="https://raw.githubusercontent.com/fluttercandies/flutter_switch_clipper/master/preview/cs2.gif" height=100>
+
 ```dart
-///自定义Clipper
-class CircleClipper extends CustomClipper<Path> {
-  CircleClipper({required this.animation}) : super(reclip: animation);
-
-  ///animation
-  final Animation<double> animation;
-
-  @override
-  Path getClip(Size size) {
-    return Path()
-      ..addOval(
-        Rect.fromCircle(
-          center: Offset(size.width / 2, size.height / 2),
-          radius: (size.longestSide / 2) * animation.value,
-        ),
-      );
-  }
-
-  @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) => false;
-}
+SwitchCipper(
+    child: ColoredBox(
+    color: Colors.blueGrey[200] ?? Colors.blueGrey,
+    child: const Icon(Icons.accessibility_new_rounded, size: 200, color: Colors.white)),
+    background: const Icon(Icons.accessible_forward_outlined, size: 200, color: Colors.white),
+    curve: Curves.ease,
+    duration: const Duration(milliseconds: 800),
+    customCipperBuilder: (Animation<double> animation) => CircleClipper(animation: animation),
+),
 ```
 
-## 体验一下
+> 使用ShutterClipper 
+
+<img src="https://raw.githubusercontent.com/fluttercandies/flutter_switch_clipper/master/preview/cs3.gif" height=100>
+
+```dart
+SwitchCipper(
+    child: ColoredBox(
+        color: Colors.blueGrey[200] ?? Colors.blueGrey,
+        child: const Icon(Icons.accessibility_new_rounded, size: 200, color: Colors.white)),
+    background: const Icon(Icons.accessible_forward_outlined, size: 200, color: Colors.white),
+    curve: Curves.ease,
+    duration: const Duration(milliseconds: 800),
+    customCipperBuilder: (Animation<double> animation) => ShutterClipper(
+        animation: animation,
+        activeAlignment: _alignment,
+    ),
+),
+```
+
+### 体验一下
 
 体验网址:[https://sc.liugl.cn](https://sc.liugl.cn)
 

@@ -16,11 +16,6 @@ class _MyAppState extends State<MyApp> {
   FillAlignment _alignment = FillAlignment.left;
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
@@ -33,20 +28,22 @@ class _MyAppState extends State<MyApp> {
           children: <Widget>[
             SwitchCipper(
               initSelect: true,
-              child: const Icon(Icons.favorite,
-                  size: 200, color: Colors.redAccent),
-              background:
-                  const Icon(Icons.favorite, size: 200, color: Colors.white),
-              fillAlignment: _alignment,
-              fillOffset: 50,
+              child: const Icon(Icons.favorite, size: 200, color: Colors.redAccent),
+              background: const Icon(Icons.favorite, size: 200, color: Colors.white),
               duration: const Duration(milliseconds: 800),
-              onSelect: (bool r) {
-                print(r);
-              },
+
+              ///使用FillClipper并自定义相关参数
+              customCipperBuilder: (Animation<double> animation) => FillClipper(
+                animation: animation,
+                fillAlignment: _alignment,
+                fillOffset: 50,
+              ),
             ),
 
-            SwitchCipper(
-              child: const Text(
+            ///默认FillClipper
+            const SwitchCipper(
+              enableWhenAnimating: false,
+              child: Text(
                 'FlutterCandies',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -55,7 +52,7 @@ class _MyAppState extends State<MyApp> {
                   height: 2,
                 ),
               ),
-              background: const Text(
+              background: Text(
                 'FlutterCandies',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -64,26 +61,11 @@ class _MyAppState extends State<MyApp> {
                   height: 2,
                 ),
               ),
-              fillAlignment: _alignment,
               curve: Curves.slowMiddle,
               reverseCurve: Curves.linear,
-              fillOffset: 10,
-            ),
-
-            ///自定义裁切example
-            SwitchCipper(
-              child: const Icon(Icons.accessibility_new_rounded,
-                  size: 200, color: Colors.blueAccent),
-              background: const Icon(Icons.accessibility_new_rounded,
-                  size: 200, color: Colors.white),
-              curve: Curves.ease,
-              duration: const Duration(milliseconds: 800),
-              customCipperBuilder: (Animation<double> animation, _) =>
-                  CircleClipper(animation: animation),
             ),
 
             ///填充方向
-            const SizedBox(height: 40),
             ...FillAlignment.values
                 .map((FillAlignment alignment) => RadioListTile<FillAlignment>(
                       value: alignment,
@@ -96,32 +78,52 @@ class _MyAppState extends State<MyApp> {
                     ))
                 .toList(),
             const SizedBox(height: 40),
+
+            Wrap(
+              children: <Widget>[
+                ///使用ShutterClipper
+                SwitchCipper(
+                  child: ColoredBox(
+                    color: Colors.blueGrey[200] ?? Colors.blueGrey,
+                    child: const Icon(Icons.accessibility_new_rounded, size: 200, color: Colors.white),
+                  ),
+                  background: const Icon(Icons.accessible_forward_outlined, size: 200, color: Colors.white),
+                  curve: Curves.ease,
+                  duration: const Duration(milliseconds: 800),
+                  customCipperBuilder: (Animation<double> animation) => ShutterClipper(
+                    animation: animation,
+                    activeAlignment: _alignment,
+                  ),
+                ),
+
+                ///使用CircleClipper切换图标颜色
+                SwitchCipper(
+                  child: const Icon(Icons.accessibility_new_rounded, size: 200, color: Colors.blueAccent),
+                  background: const Icon(Icons.accessibility_new_rounded, size: 200, color: Colors.white),
+                  curve: Curves.ease,
+                  duration: const Duration(milliseconds: 800),
+                  customCipperBuilder: (Animation<double> animation) => CircleClipper(animation: animation),
+                ),
+
+                ///使用CircleClipper切换两个图标
+                SwitchCipper(
+                  child: ColoredBox(
+                    color: Colors.blueGrey[200] ?? Colors.blueGrey,
+                    child: const Icon(Icons.accessibility_new_rounded, size: 200, color: Colors.white),
+                  ),
+                  background: const Icon(Icons.accessible_forward_outlined, size: 200, color: Colors.white),
+                  curve: Curves.ease,
+                  duration: const Duration(milliseconds: 800),
+                  customCipperBuilder: (Animation<double> animation) => CircleClipper(animation: animation),
+                ),
+              ],
+            ),
+            const SizedBox(height: 40),
+
             const Text('点击上方图标或文本预览效果'),
           ],
         ),
       ),
     );
   }
-}
-
-///自定义Clipper
-class CircleClipper extends CustomClipper<Path> {
-  CircleClipper({required this.animation}) : super(reclip: animation);
-
-  ///animation
-  final Animation<double> animation;
-
-  @override
-  Path getClip(Size size) {
-    return Path()
-      ..addOval(
-        Rect.fromCircle(
-          center: Offset(size.width / 2, size.height / 2),
-          radius: (size.longestSide / 2) * animation.value,
-        ),
-      );
-  }
-
-  @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) => false;
 }

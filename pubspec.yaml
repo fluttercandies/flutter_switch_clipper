@@ -1,6 +1,6 @@
 name: flutter_switch_clipper
 description: A Flutter package that two widgets switch with default clipper or customized clipper.
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/fluttercandies/flutter_switch_clipper
 publish_to: 'https://pub.dev'
 
