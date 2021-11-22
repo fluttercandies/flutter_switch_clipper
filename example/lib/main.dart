@@ -28,8 +28,10 @@ class _MyAppState extends State<MyApp> {
           children: <Widget>[
             SwitchCipper(
               initSelect: true,
-              child: const Icon(Icons.favorite, size: 200, color: Colors.redAccent),
-              background: const Icon(Icons.favorite, size: 200, color: Colors.white),
+              child: const Icon(Icons.favorite,
+                  size: 200, color: Colors.redAccent),
+              background:
+                  const Icon(Icons.favorite, size: 200, color: Colors.white),
               duration: const Duration(milliseconds: 800),
 
               ///使用FillClipper并自定义相关参数
@@ -85,12 +87,15 @@ class _MyAppState extends State<MyApp> {
                 SwitchCipper(
                   child: ColoredBox(
                     color: Colors.blueGrey[200] ?? Colors.blueGrey,
-                    child: const Icon(Icons.accessibility_new_rounded, size: 200, color: Colors.white),
+                    child: const Icon(Icons.accessibility_new_rounded,
+                        size: 200, color: Colors.white),
                   ),
-                  background: const Icon(Icons.accessible_forward_outlined, size: 200, color: Colors.white),
+                  background: const Icon(Icons.accessible_forward_outlined,
+                      size: 200, color: Colors.white),
                   curve: Curves.ease,
                   duration: const Duration(milliseconds: 800),
-                  customCipperBuilder: (Animation<double> animation) => ShutterClipper(
+                  customCipperBuilder: (Animation<double> animation) =>
+                      ShutterClipper(
                     animation: animation,
                     activeAlignment: _alignment,
                   ),
@@ -98,23 +103,29 @@ class _MyAppState extends State<MyApp> {
 
                 ///使用CircleClipper切换图标颜色
                 SwitchCipper(
-                  child: const Icon(Icons.accessibility_new_rounded, size: 200, color: Colors.blueAccent),
-                  background: const Icon(Icons.accessibility_new_rounded, size: 200, color: Colors.white),
+                  child: const Icon(Icons.accessibility_new_rounded,
+                      size: 200, color: Colors.blueAccent),
+                  background: const Icon(Icons.accessibility_new_rounded,
+                      size: 200, color: Colors.white),
                   curve: Curves.ease,
                   duration: const Duration(milliseconds: 800),
-                  customCipperBuilder: (Animation<double> animation) => CircleClipper(animation: animation),
+                  customCipperBuilder: (Animation<double> animation) =>
+                      CircleClipper(animation: animation),
                 ),
 
                 ///使用CircleClipper切换两个图标
                 SwitchCipper(
                   child: ColoredBox(
                     color: Colors.blueGrey[200] ?? Colors.blueGrey,
-                    child: const Icon(Icons.accessibility_new_rounded, size: 200, color: Colors.white),
+                    child: const Icon(Icons.accessibility_new_rounded,
+                        size: 200, color: Colors.white),
                   ),
-                  background: const Icon(Icons.accessible_forward_outlined, size: 200, color: Colors.white),
+                  background: const Icon(Icons.accessible_forward_outlined,
+                      size: 200, color: Colors.white),
                   curve: Curves.ease,
                   duration: const Duration(milliseconds: 800),
-                  customCipperBuilder: (Animation<double> animation) => CircleClipper(animation: animation),
+                  customCipperBuilder: (Animation<double> animation) =>
+                      CircleClipper(animation: animation),
                 ),
               ],
             ),

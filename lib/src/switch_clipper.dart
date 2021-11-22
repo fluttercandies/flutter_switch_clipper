@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'clippers/fill_clipper.dart';
 
 ///自定义裁剪
-typedef SwitchCipperBuilder = CustomClipper<Path>? Function(Animation<double> animation);
+typedef SwitchCipperBuilder = CustomClipper<Path>? Function(
+    Animation<double> animation);
 
 ///动画执行状态回调
 typedef OnAnimationStatusChanged = Function(AnimationStatus animationStatus);
@@ -88,7 +89,8 @@ class SwitchCipper extends StatefulWidget {
   final bool enableWhenAnimating;
 }
 
-class _SwitchCipperState extends State<SwitchCipper> with SingleTickerProviderStateMixin {
+class _SwitchCipperState extends State<SwitchCipper>
+    with SingleTickerProviderStateMixin {
   ///动画控制器
   late AnimationController _controller;
 
@@ -197,10 +199,12 @@ class _SwitchCipperState extends State<SwitchCipper> with SingleTickerProviderSt
 
   ///点击回调
   Future<void> _onSelect() async {
-    if (_controller.isCompleted || (widget.enableWhenAnimating && _controller.isAnimating)) {
+    if (_controller.isCompleted ||
+        (widget.enableWhenAnimating && _controller.isAnimating)) {
       if (!(widget.onSelect?.call(false) ?? true)) return;
       await _reverse();
-    } else if (_controller.isDismissed || (widget.enableWhenAnimating && _controller.isAnimating)) {
+    } else if (_controller.isDismissed ||
+        (widget.enableWhenAnimating && _controller.isAnimating)) {
       if (!(widget.onSelect?.call(true) ?? true)) return;
       await _forward();
     }

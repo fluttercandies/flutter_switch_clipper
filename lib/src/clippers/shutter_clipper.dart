@@ -58,7 +58,8 @@ class ShutterClipper extends CustomClipper<Path> {
 
   ///处理叶片尺寸
   double _handleFragmentSize(Size size) {
-    if (activeAlignment == FillAlignment.top || activeAlignment == FillAlignment.bottom) {
+    if (activeAlignment == FillAlignment.top ||
+        activeAlignment == FillAlignment.bottom) {
       return size.height / fragment;
     }
 

@@ -32,7 +32,8 @@ class FillClipper extends CustomClipper<Path> {
         ..moveTo(0, -fillOffset)
         ..lineTo(w, -fillOffset)
         ..lineTo(w, h * animation.value - fillOffset * (1 - animation.value))
-        ..quadraticBezierTo(w / 2, h * animation.value, 0, h * animation.value - fillOffset * (1 - animation.value))
+        ..quadraticBezierTo(w / 2, h * animation.value, 0,
+            h * animation.value - fillOffset * (1 - animation.value))
         ..close();
     } else if (fillAlignment == FillAlignment.right) {
       path
@@ -52,7 +53,10 @@ class FillClipper extends CustomClipper<Path> {
         ..lineTo(w, h + fillOffset)
         ..lineTo(w, (h + fillOffset) * (1 - animation.value))
         ..quadraticBezierTo(
-            w / 2, (h - (fillOffset - 1)) * (1 - animation.value), 0, (h + fillOffset) * (1 - animation.value))
+            w / 2,
+            (h - (fillOffset - 1)) * (1 - animation.value),
+            0,
+            (h + fillOffset) * (1 - animation.value))
         ..close();
     } else {
       path
