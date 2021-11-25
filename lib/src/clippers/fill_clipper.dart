@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_switch_clipper/src/helper/fill_alignment.dart';
+import 'package:flutter_switch_clipper/src/helper/clipper_enum.dart';
 
 ///填充裁切
 class FillClipper extends CustomClipper<Path> {
@@ -9,15 +9,15 @@ class FillClipper extends CustomClipper<Path> {
     this.fillOffset = 20,
   }) : super(reclip: animation);
 
-  ///* 裁切起始方向
-  ///* 默认 `FillAlignment.left`
+  /// * 裁切起始方向
+  /// * 默认 `FillAlignment.left`
   final FillAlignment fillAlignment;
 
-  ///* 裁切弧度偏移量
-  ///* 默认`20`
+  /// * 裁切弧度偏移量
+  /// * 默认`20`
   final double fillOffset;
 
-  ///动画对象
+  /// 动画对象
   final Animation<double> animation;
 
   @override

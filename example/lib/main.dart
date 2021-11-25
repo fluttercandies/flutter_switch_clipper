@@ -34,7 +34,7 @@ class _MyAppState extends State<MyApp> {
                   const Icon(Icons.favorite, size: 200, color: Colors.white),
               duration: const Duration(milliseconds: 800),
 
-              ///使用FillClipper并自定义相关参数
+              /// 使用FillClipper并自定义相关参数
               customCipperBuilder: (Animation<double> animation) => FillClipper(
                 animation: animation,
                 fillAlignment: _alignment,
@@ -42,7 +42,7 @@ class _MyAppState extends State<MyApp> {
               ),
             ),
 
-            ///默认FillClipper
+            /// 默认FillClipper
             const SwitchCipper(
               enableWhenAnimating: false,
               child: Text(
@@ -67,7 +67,7 @@ class _MyAppState extends State<MyApp> {
               reverseCurve: Curves.linear,
             ),
 
-            ///填充方向
+            /// 填充方向
             ...FillAlignment.values
                 .map((FillAlignment alignment) => RadioListTile<FillAlignment>(
                       value: alignment,
@@ -83,7 +83,7 @@ class _MyAppState extends State<MyApp> {
 
             Wrap(
               children: <Widget>[
-                ///使用ShutterClipper
+                /// 使用ShutterClipper
                 SwitchCipper(
                   child: ColoredBox(
                     color: Colors.blueGrey[200] ?? Colors.blueGrey,
@@ -101,7 +101,7 @@ class _MyAppState extends State<MyApp> {
                   ),
                 ),
 
-                ///使用CircleClipper切换图标颜色
+                /// 使用CircleClipper切换图标颜色
                 SwitchCipper(
                   child: const Icon(Icons.accessibility_new_rounded,
                       size: 200, color: Colors.blueAccent),
@@ -113,7 +113,7 @@ class _MyAppState extends State<MyApp> {
                       CircleClipper(animation: animation),
                 ),
 
-                ///使用CircleClipper切换两个图标
+                /// 使用CircleClipper切换两个图标
                 SwitchCipper(
                   child: ColoredBox(
                     color: Colors.blueGrey[200] ?? Colors.blueGrey,
@@ -126,6 +126,59 @@ class _MyAppState extends State<MyApp> {
                   duration: const Duration(milliseconds: 800),
                   customCipperBuilder: (Animation<double> animation) =>
                       CircleClipper(animation: animation),
+                ),
+
+                /// 使用WaveClipper切换图标颜色
+                SwitchCipper(
+                  child: const Icon(Icons.access_time_filled_rounded,
+                      size: 200, color: Colors.blue),
+                  // child: Container(width: 200, height: 200, color: Colors.blue),
+                  background: const Icon(Icons.access_time_filled_rounded,
+                      size: 200, color: Colors.white),
+                  curve: Curves.ease,
+                  duration: const Duration(milliseconds: 2000),
+                  customCipperBuilder: (Animation<double> animation) =>
+                      WaveClipper(
+                    animation: animation,
+                    waveAlignment: _alignment == FillAlignment.left
+                        ? WaveAlignment.left
+                        : WaveAlignment.right,
+                  ),
+                ),
+
+                /// 使用CameraClipper切换图标颜色
+                SwitchCipper(
+                  // child: const Icon(Icons.access_time_filled_rounded, size: 200, color: Colors.blue),
+                  child: Container(
+                    width: 200,
+                    height: 200,
+                    alignment: Alignment.center,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.blue,
+                    ),
+                    child: const Text(
+                      'Camera',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 40,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  // background: const Icon(Icons.access_time_filled_rounded, size: 200, color: Colors.white),
+                  background: Container(
+                    width: 200,
+                    height: 200,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.white,
+                    ),
+                  ),
+                  duration: const Duration(milliseconds: 2000),
+                  customCipperBuilder: (Animation<double> animation) =>
+                      CameraClipper(
+                    animation: animation,
+                  ),
                 ),
               ],
             ),

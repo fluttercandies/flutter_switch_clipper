@@ -1,9 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_switch_clipper/src/helper/fill_alignment.dart';
+import 'package:flutter_switch_clipper/src/helper/clipper_enum.dart';
 
-///ShutterClipper
+/// ShutterClipper
 class ShutterClipper extends CustomClipper<Path> {
   ShutterClipper({
     required this.animation,
@@ -11,18 +11,18 @@ class ShutterClipper extends CustomClipper<Path> {
     this.fragment = 6,
   }) : super(reclip: animation);
 
-  ///animation
+  /// animation
   final Animation<double> animation;
 
-  ///朝向
+  /// 朝向
   final FillAlignment activeAlignment;
 
-  ///叶片数量
+  /// 叶片数量
   final int fragment;
 
   @override
   Path getClip(Size size) {
-    ///叶片尺寸
+    //叶片尺寸
     final double fragmentSize = _handleFragmentSize(size);
 
     final Path path = Path();
@@ -56,7 +56,7 @@ class ShutterClipper extends CustomClipper<Path> {
     return path;
   }
 
-  ///处理叶片尺寸
+  /// 处理叶片尺寸
   double _handleFragmentSize(Size size) {
     if (activeAlignment == FillAlignment.top ||
         activeAlignment == FillAlignment.bottom) {
