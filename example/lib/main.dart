@@ -174,7 +174,7 @@ class _MyAppState extends State<MyApp> {
                       color: Colors.white,
                     ),
                   ),
-                  duration: const Duration(milliseconds: 2000),
+                  duration: const Duration(milliseconds: 1500),
                   customCipperBuilder: (Animation<double> animation) =>
                       CameraClipper(
                     animation: animation,

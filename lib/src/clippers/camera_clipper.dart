@@ -9,7 +9,7 @@ class CameraClipper extends CustomClipper<Path> {
   CameraClipper({
     required this.animation,
     this.lensAperture = 20,
-    this.lensAngle = 120,
+    this.lensAngle = -120,
   }) : super(reclip: animation);
 
   /// animation
@@ -54,7 +54,7 @@ class CameraClipper extends CustomClipper<Path> {
     bladePath.close();
 
     //平移
-    bladePath = bladePath.shift(Offset(0, -r * animation.value));
+    bladePath = bladePath.shift(Offset(0, -r * (1 - animation.value)));
 
     //准备联合路径
     Path path = bladePath;
@@ -86,5 +86,5 @@ class CameraClipper extends CustomClipper<Path> {
   }
 
   @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) => true;
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) => false;
 }
