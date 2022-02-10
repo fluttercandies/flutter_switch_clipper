@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_switch_clipper/src/helper/clipper_enum.dart';
 

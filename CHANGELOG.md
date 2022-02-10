@@ -13,3 +13,7 @@
 ## 0.0.4
 
 * Add two clippers, fix bug
+
+## 0.0.5
+
+* Adapt flutter sdk
