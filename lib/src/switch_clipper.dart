@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'clippers/animation_clipper.dart';
 import 'clippers/fill_clipper.dart';
-
-/// 自定义裁剪
-typedef SwitchCipperBuilder = CustomClipper<Path>? Function(
-    Animation<double> animation);
 
 /// 动画执行状态回调
 typedef OnAnimationStatusChanged = Function(AnimationStatus animationStatus);
@@ -21,7 +18,7 @@ class SwitchCipper extends StatefulWidget {
     this.isSelect,
     this.onSelect,
     this.alignment = Alignment.center,
-    this.customCipperBuilder,
+    this.animationClip,
     this.initSelect = false,
     this.onAnimationComplate,
     this.value,
@@ -78,7 +75,7 @@ class SwitchCipper extends StatefulWidget {
 
   /// * 自定义裁切
   /// * 默认 `FillClipper`
-  final SwitchCipperBuilder? customCipperBuilder;
+  final AnimationClip? animationClip;
 
   /// 动画执行状态回调
   final OnAnimationStatusChanged? onAnimationComplate;
@@ -239,19 +236,31 @@ class _SwitchCipperState extends State<SwitchCipper>
   }
 
   ///自定义裁切
-  CustomClipper<Path> get _clipper =>
-      widget.customCipperBuilder?.call(
+  CustomClipper<Path> get _clipper => _Clipper(
         CurvedAnimation(
           parent: _controller,
           curve: widget.curve,
           reverseCurve: widget.reverseCurve,
         ),
-      ) ??
-      FillClipper(
-        animation: CurvedAnimation(
-          parent: _controller,
-          curve: widget.curve,
-          reverseCurve: widget.reverseCurve,
-        ),
+        widget.animationClip ?? const FillClipper(),
       );
+}
+
+class _Clipper extends CustomClipper<Path> {
+  const _Clipper(
+    this.animation,
+    this.animationClip,
+  ) : super(reclip: animation);
+
+  final Animation<double> animation;
+
+  final AnimationClip animationClip;
+
+  @override
+  Path getClip(Size size) {
+    return animationClip.getClip(size, animation);
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) => false;
 }

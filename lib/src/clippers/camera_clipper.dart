@@ -3,17 +3,12 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_switch_clipper/src/helper/matrix4_transform.dart';
 
+import 'animation_clipper.dart';
+
 /// CameraClipper
 /// 快门裁剪
-class CameraClipper extends CustomClipper<Path> {
-  CameraClipper({
-    required this.animation,
-    this.lensAperture = 20,
-    this.lensAngle = -120,
-  }) : super(reclip: animation);
-
-  /// animation
-  final Animation<double> animation;
+class CameraClipper extends AnimationClip {
+  CameraClipper({this.lensAperture = 20, this.lensAngle = -120});
 
   /// 镜头孔径
   final double lensAperture;
@@ -28,7 +23,7 @@ class CameraClipper extends CustomClipper<Path> {
   late double _diagonal;
 
   @override
-  Path getClip(Size size) {
+  Path getClip(Size size, Animation<double> animation) {
     //基础数据
     final double w = size.width;
     final double h = size.height;
@@ -84,7 +79,4 @@ class CameraClipper extends CustomClipper<Path> {
 
     return _diagonal;
   }
-
-  @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) => false;
 }

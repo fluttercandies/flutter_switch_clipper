@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_switch_clipper/src/helper/clipper_enum.dart';
 
+import 'animation_clipper.dart';
+
 /// WaveClipper
 /// 波浪裁剪
-class WaveClipper extends CustomClipper<Path> {
+class WaveClipper extends AnimationClip {
   WaveClipper({
-    required this.animation,
     this.waveHeight = 10,
     this.waveWidth = 100,
     this.waveSpeed = 2,
     this.waveAlignment = WaveAlignment.left,
-  }) : super(reclip: animation);
-
-  /// animation
-  final Animation<double> animation;
+  });
 
   /// 波浪高度
   final double waveHeight;
@@ -28,7 +26,7 @@ class WaveClipper extends CustomClipper<Path> {
   final WaveAlignment waveAlignment;
 
   @override
-  Path getClip(Size size) {
+  Path getClip(Size size, Animation<double> animation) {
     final double w = size.width;
     final double h = size.height;
     final Path path = Path();
@@ -73,7 +71,4 @@ class WaveClipper extends CustomClipper<Path> {
       ),
     );
   }
-
-  @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) => false;
 }

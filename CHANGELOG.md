@@ -1,19 +1,30 @@
-## 0.0.1
+## 0.0.6
 
-* First commit
+* Optimize clipper objects
+* Update demo URL
 
-## 0.0.2
+## 0.0.5
 
-* Complete introduction and example
-
-## 0.0.3
-
-* Redesign the architecture, add optional parameters
+* Adapt flutter sdk
 
 ## 0.0.4
 
 * Add two clippers, fix bug
 
-## 0.0.5
+## 0.0.3
 
-* Adapt flutter sdk
+* Redesign the architecture, add optional parameters
+
+## 0.0.2
+
+* Complete introduction and example
+
+## 0.0.1
+
+* First commit
+
+
+
+
+
+

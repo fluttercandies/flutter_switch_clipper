@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_switch_clipper/src/helper/clipper_enum.dart';
 
+import 'animation_clipper.dart';
+
 /// ShutterClipper
-class ShutterClipper extends CustomClipper<Path> {
+class ShutterClipper extends AnimationClip {
   ShutterClipper({
-    required this.animation,
     this.activeAlignment = FillAlignment.top,
     this.fragment = 6,
-  }) : super(reclip: animation);
-
-  /// animation
-  final Animation<double> animation;
+  });
 
   /// 朝向
   final FillAlignment activeAlignment;
@@ -19,7 +17,7 @@ class ShutterClipper extends CustomClipper<Path> {
   final int fragment;
 
   @override
-  Path getClip(Size size) {
+  Path getClip(Size size, Animation<double> animation) {
     //叶片尺寸
     final double fragmentSize = _handleFragmentSize(size);
 
@@ -63,7 +61,4 @@ class ShutterClipper extends CustomClipper<Path> {
 
     return size.width / fragment;
   }
-
-  @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) => false;
 }

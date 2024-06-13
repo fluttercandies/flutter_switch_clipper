@@ -13,8 +13,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  FillAlignment _alignment = FillAlignment.left;
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -26,20 +24,14 @@ class _MyAppState extends State<MyApp> {
         body: ListView(
           padding: const EdgeInsets.all(40),
           children: <Widget>[
-            SwitchCipper(
+            const SwitchCipper(
               initSelect: true,
-              child: const Icon(Icons.favorite,
-                  size: 200, color: Colors.redAccent),
-              background:
-                  const Icon(Icons.favorite, size: 200, color: Colors.white),
-              duration: const Duration(milliseconds: 800),
+              child: Icon(Icons.favorite, size: 200, color: Colors.redAccent),
+              background: Icon(Icons.favorite, size: 200, color: Colors.white),
+              duration: Duration(milliseconds: 800),
 
               /// 使用FillClipper并自定义相关参数
-              customCipperBuilder: (Animation<double> animation) => FillClipper(
-                animation: animation,
-                fillAlignment: _alignment,
-                fillOffset: 50,
-              ),
+              animationClip: FillClipper(fillOffset: 50),
             ),
 
             /// 默认FillClipper
@@ -67,20 +59,6 @@ class _MyAppState extends State<MyApp> {
               reverseCurve: Curves.linear,
             ),
 
-            /// 填充方向
-            ...FillAlignment.values
-                .map((FillAlignment alignment) => RadioListTile<FillAlignment>(
-                      value: alignment,
-                      groupValue: _alignment,
-                      title: Text(alignment.toString()),
-                      contentPadding: EdgeInsets.zero,
-                      onChanged: (_) {
-                        setState(() => _alignment = alignment);
-                      },
-                    ))
-                .toList(),
-            const SizedBox(height: 40),
-
             Wrap(
               children: <Widget>[
                 /// 使用ShutterClipper
@@ -94,11 +72,7 @@ class _MyAppState extends State<MyApp> {
                       size: 200, color: Colors.white),
                   curve: Curves.ease,
                   duration: const Duration(milliseconds: 800),
-                  customCipperBuilder: (Animation<double> animation) =>
-                      ShutterClipper(
-                    animation: animation,
-                    activeAlignment: _alignment,
-                  ),
+                  animationClip: ShutterClipper(),
                 ),
 
                 /// 使用CircleClipper切换图标颜色
@@ -109,8 +83,7 @@ class _MyAppState extends State<MyApp> {
                       size: 200, color: Colors.white),
                   curve: Curves.ease,
                   duration: const Duration(milliseconds: 800),
-                  customCipperBuilder: (Animation<double> animation) =>
-                      CircleClipper(animation: animation),
+                  animationClip: CircleClipper(),
                 ),
 
                 /// 使用CircleClipper切换两个图标
@@ -124,8 +97,7 @@ class _MyAppState extends State<MyApp> {
                       size: 200, color: Colors.white),
                   curve: Curves.ease,
                   duration: const Duration(milliseconds: 800),
-                  customCipperBuilder: (Animation<double> animation) =>
-                      CircleClipper(animation: animation),
+                  animationClip: CircleClipper(),
                 ),
 
                 /// 使用WaveClipper切换图标颜色
@@ -137,13 +109,7 @@ class _MyAppState extends State<MyApp> {
                       size: 200, color: Colors.white),
                   curve: Curves.ease,
                   duration: const Duration(milliseconds: 2000),
-                  customCipperBuilder: (Animation<double> animation) =>
-                      WaveClipper(
-                    animation: animation,
-                    waveAlignment: _alignment == FillAlignment.left
-                        ? WaveAlignment.left
-                        : WaveAlignment.right,
-                  ),
+                  animationClip: WaveClipper(),
                 ),
 
                 /// 使用CameraClipper切换图标颜色
@@ -175,10 +141,7 @@ class _MyAppState extends State<MyApp> {
                     ),
                   ),
                   duration: const Duration(milliseconds: 1500),
-                  customCipperBuilder: (Animation<double> animation) =>
-                      CameraClipper(
-                    animation: animation,
-                  ),
+                  animationClip: CameraClipper(),
                 ),
               ],
             ),

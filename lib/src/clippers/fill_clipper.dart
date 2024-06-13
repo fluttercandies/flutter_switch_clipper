@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_switch_clipper/src/helper/clipper_enum.dart';
 
+import 'animation_clipper.dart';
+
 ///填充裁切
-class FillClipper extends CustomClipper<Path> {
+class FillClipper extends AnimationClip {
   const FillClipper({
-    required this.animation,
     this.fillAlignment = FillAlignment.left,
     this.fillOffset = 20,
-  }) : super(reclip: animation);
+  });
 
   /// * 裁切起始方向
   /// * 默认 `FillAlignment.left`
@@ -17,11 +18,8 @@ class FillClipper extends CustomClipper<Path> {
   /// * 默认`20`
   final double fillOffset;
 
-  /// 动画对象
-  final Animation<double> animation;
-
   @override
-  Path getClip(Size size) {
+  Path getClip(Size size, Animation<double> animation) {
     final double w = size.width;
     final double h = size.height;
 
@@ -74,7 +72,4 @@ class FillClipper extends CustomClipper<Path> {
 
     return path;
   }
-
-  @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) => false;
 }

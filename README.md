@@ -8,6 +8,11 @@ A Flutter package that two widgets switch with clipper.
 [![CodeFactor](https://img.shields.io/codefactor/grade/github/fluttercandies/flutter_switch_clipper?logo=codefactor&logoColor=%23ffffff&style=flat-square)](https://www.codefactor.io/repository/github/fluttercandies/flutter_switch_clipper)
 <a target="_blank" href="https://jq.qq.com/?_wv=1027&k=5bcc0gy"><img border="0" src="https://pub.idqqimg.com/wpa/images/group.png" alt="FlutterCandies" title="FlutterCandies"></a>
 
+
+### 体验一下
+
+体验网址:[Demo](https://xsilencex.github.io/flutter_switch_clipper_demo/)
+
 ### 使用
 
 > 使用FillClipper并自定义相关参数 
@@ -17,12 +22,12 @@ A Flutter package that two widgets switch with clipper.
   <summary>View code</summary>
 
 ```dart
-SwitchCipper(
+SwitchClipper(
     initSelect: true,
     child: const Icon(Icons.favorite, size: 200, color: Colors.redAccent),
     background: const Icon(Icons.favorite, size: 200, color: Colors.white),
     duration: const Duration(milliseconds: 800),
-    customCipperBuilder: (Animation<double> animation) => FillClipper(
+    customClipperBuilder: (Animation<double> animation) => FillClipper(
         animation: animation,
         fillAlignment: _alignment,
         fillOffset: 50,
@@ -41,7 +46,7 @@ SwitchCipper(
   <summary>View code</summary>
 
 ```dart
-const SwitchCipper(
+const SwitchClipper(
     enableWhenAnimating: false,
     child: Text(
         'FlutterCandies',
@@ -78,12 +83,12 @@ const SwitchCipper(
   <summary>View code</summary>
 
 ```dart
-SwitchCipper(
+SwitchClipper(
     child: const Icon(Icons.accessibility_new_rounded, size: 200, color: Colors.blueAccent),
     background: const Icon(Icons.accessibility_new_rounded, size: 200, color: Colors.white),
     curve: Curves.ease,
     duration: const Duration(milliseconds: 800),
-    customCipperBuilder: (Animation<double> animation) => CircleClipper(animation: animation),
+    customClipperBuilder: (Animation<double> animation) => CircleClipper(animation: animation),
 ),
 ```
 
@@ -99,14 +104,14 @@ SwitchCipper(
   <summary>View code</summary>
 
 ```dart
-SwitchCipper(
+SwitchClipper(
     child: ColoredBox(
     color: Colors.blueGrey[200] ?? Colors.blueGrey,
     child: const Icon(Icons.accessibility_new_rounded, size: 200, color: Colors.white)),
     background: const Icon(Icons.accessible_forward_outlined, size: 200, color: Colors.white),
     curve: Curves.ease,
     duration: const Duration(milliseconds: 800),
-    customCipperBuilder: (Animation<double> animation) => CircleClipper(animation: animation),
+    customClipperBuilder: (Animation<double> animation) => CircleClipper(animation: animation),
 ),
 ```
 
@@ -122,14 +127,14 @@ SwitchCipper(
   <summary>View code</summary>
 
 ```dart
-SwitchCipper(
+SwitchClipper(
     child: ColoredBox(
         color: Colors.blueGrey[200] ?? Colors.blueGrey,
         child: const Icon(Icons.accessibility_new_rounded, size: 200, color: Colors.white)),
     background: const Icon(Icons.accessible_forward_outlined, size: 200, color: Colors.white),
     curve: Curves.ease,
     duration: const Duration(milliseconds: 800),
-    customCipperBuilder: (Animation<double> animation) => ShutterClipper(
+    customClipperBuilder: (Animation<double> animation) => ShutterClipper(
         animation: animation,
         activeAlignment: _alignment,
     ),
@@ -148,12 +153,12 @@ SwitchCipper(
   <summary>View code</summary>
 
 ```dart
-SwitchCipper(
+SwitchClipper(
     child: const Icon(Icons.access_time_filled_rounded, size: 200, color: Colors.blue),
     background: const Icon(Icons.access_time_filled_rounded, size: 200, color: Colors.white),
     curve: Curves.ease,
     duration: const Duration(milliseconds: 2000),
-    customCipperBuilder: (Animation<double> animation) => WaveClipper(
+    customClipperBuilder: (Animation<double> animation) => WaveClipper(
         animation: animation,
         waveAlignment: _alignment == FillAlignment.left ? WaveAlignment.left : WaveAlignment.right,
     ),
@@ -172,7 +177,7 @@ SwitchCipper(
   <summary>View code</summary>
 
 ```dart
-SwitchCipper(
+SwitchClipper(
     child: Container(
         width: 200,
         height: 200,
@@ -195,7 +200,7 @@ SwitchCipper(
         ),
     ),
     duration: const Duration(milliseconds: 2000),
-    customCipperBuilder: (Animation<double> animation) => CameraClipper(
+    customClipperBuilder: (Animation<double> animation) => CameraClipper(
         animation: animation,
     ),
 ),
@@ -203,7 +208,4 @@ SwitchCipper(
 
 </details>
 
-### 体验一下
-
-体验网址:[https://sc.liugl.cn](https://sc.liugl.cn)
 

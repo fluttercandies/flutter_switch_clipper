@@ -2,12 +2,11 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-/// CircleClipper
-class CircleClipper extends CustomClipper<Path> {
-  CircleClipper({required this.animation}) : super(reclip: animation);
+import 'animation_clipper.dart';
 
-  /// animation
-  final Animation<double> animation;
+/// CircleClipper
+class CircleClipper extends AnimationClip {
+  CircleClipper();
 
   /// Size备份
   Size? _size;
@@ -16,7 +15,7 @@ class CircleClipper extends CustomClipper<Path> {
   late double _diagonal;
 
   @override
-  Path getClip(Size size) {
+  Path getClip(Size size, Animation<double> animation) {
     return Path()
       ..addOval(
         Rect.fromCircle(
@@ -36,7 +35,4 @@ class CircleClipper extends CustomClipper<Path> {
 
     return _diagonal;
   }
-
-  @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) => false;
 }
